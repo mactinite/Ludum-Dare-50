@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public abstract class StateMachine<T> : MonoBehaviour where T : StateMachine<T>
 {
     protected State<T> State;
+    public Dictionary<string, State<T>> StateMap = new Dictionary<string, State<T>>();
     public void SetState(State<T> state)
     {
         if(State != null)
@@ -22,6 +24,19 @@ public abstract class StateMachine<T> : MonoBehaviour where T : StateMachine<T>
             StartCoroutine(State.End());
         State = stateInstance;
         StartCoroutine(State.Start());
+    }
+
+    public void SetState(string stateName)
+    {
+        if (StateMap.TryGetValue(stateName, out State))
+        {
+            SetState(State);
+        }
+        else
+        {
+            throw new Exception(stateName +
+                                " not found in runtime state map. Did you forget to register the state or use the wrong identifier?");
+        }
     }
 
 
