@@ -20186,6 +20186,26 @@ PrefabInstance:
       objectReference: {fileID: 31709373}
     - target: {fileID: 7576255351491404241, guid: 5745d95498a848e468001df8941dc519,
         type: 3}
+      propertyPath: dashSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576255351491404241, guid: 5745d95498a848e468001df8941dc519,
+        type: 3}
+      propertyPath: dashDuration
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576255351491404241, guid: 5745d95498a848e468001df8941dc519,
+        type: 3}
+      propertyPath: kickDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576255351491404241, guid: 5745d95498a848e468001df8941dc519,
+        type: 3}
+      propertyPath: kickUpwardSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576255351491404241, guid: 5745d95498a848e468001df8941dc519,
+        type: 3}
       propertyPath: kickDownwardSpeed
       value: 20
       objectReference: {fileID: 0}
@@ -20243,6 +20263,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576255351491404243, guid: 5745d95498a848e468001df8941dc519,
+        type: 3}
+      propertyPath: _maxLateralSpeed
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5745d95498a848e468001df8941dc519, type: 3}

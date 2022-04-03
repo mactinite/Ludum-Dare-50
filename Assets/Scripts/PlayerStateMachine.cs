@@ -42,6 +42,10 @@ public class PlayerStateMachine : StateMachine<PlayerStateMachine>
         set => characterController = value;
     }
 
+    public float dashSpeed = 10f;
+
+    public float dashDuration = 0.5f;
+
     public float stunDuration = 0.2f;
 
 
@@ -57,6 +61,7 @@ public class PlayerStateMachine : StateMachine<PlayerStateMachine>
         StateMap.Add("Kick",  new KickState(this));
         StateMap.Add("AirKick",  new AirKickState(this));
         StateMap.Add("Stun",  new PlayerStunState(this));
+        StateMap.Add("Dash",  new DashState(this));
         SetState("Ground");
     }
 
@@ -129,6 +134,12 @@ public class GroundState : State<PlayerStateMachine>
                 StateMachine.SetState("Kick");
                 yield break;
             }
+            
+            if (StateMachine.CharacterController.input.actions["Dash"].triggered)
+            {
+                StateMachine.SetState("Dash");
+                yield break;
+            }
 
             if (StateMachine.damageReceiver.wasDamagedThisFrame)
             {
@@ -187,6 +198,12 @@ public class AirState : State<PlayerStateMachine>
             if (StateMachine.CharacterController.input.actions["Kick"].triggered)
             {
                 StateMachine.SetState("AirKick");
+                yield break;
+            }
+            
+            if (StateMachine.CharacterController.input.actions["Dash"].triggered)
+            {
+                StateMachine.SetState("Dash");
                 yield break;
             }
             
@@ -331,6 +348,34 @@ public class AirKickState : State<PlayerStateMachine>
         StateMachine.CharacterController.canControl = true;
         StateMachine.kickDownHitbox.SetActive(false);
 
+        StateMachine.SetState("Ground");
+    }
+}
+
+public class DashState : State<PlayerStateMachine>
+{
+    public DashState(PlayerStateMachine stateMachine) : base(stateMachine)
+    {
+    }
+
+    public override IEnumerator Start()
+    {
+        float t = 0;
+        StateMachine.damageReceiver.enabled = false;
+        StateMachine.CharacterController.canControl = false;
+        StateMachine.CharacterController.movement.velocity = Vector3.zero;
+        StateMachine.animator.Play("Dash");
+        
+        while (t < StateMachine.dashDuration)
+        {
+            StateMachine.characterController.movement.Move(StateMachine.transform.forward * StateMachine.dashSpeed, StateMachine.dashSpeed);
+            t += Time.deltaTime;
+            yield return null;
+        }
+        
+        StateMachine.damageReceiver.enabled = true;
+        StateMachine.CharacterController.canControl = true;
+        
         StateMachine.SetState("Ground");
     }
 }
