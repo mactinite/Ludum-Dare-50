@@ -2578,8 +2578,8 @@ MonoBehaviour:
     m_Bits: 64
   targetLockDistance: 15
   TargetGroup: {fileID: 1315480075}
-  lateralSensitivity: 50
-  verticalSensitivity: 50
+  lateralSensitivity: 40
+  verticalSensitivity: 40
   followCam: {fileID: 362262576}
   smoothTime: 0
   input: {fileID: 31709376}
@@ -20184,6 +20184,11 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 31709373}
+    - target: {fileID: 7576255351491404241, guid: 5745d95498a848e468001df8941dc519,
+        type: 3}
+      propertyPath: kickDownwardSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7576255351491404242, guid: 5745d95498a848e468001df8941dc519,
         type: 3}
       propertyPath: m_RootOrder
