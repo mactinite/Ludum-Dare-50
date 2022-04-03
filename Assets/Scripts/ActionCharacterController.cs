@@ -26,16 +26,23 @@ using UnityEngine.InputSystem;
         [SerializeField]
         private float _runSpeed = 5.0f;
 
+        [SerializeField] private GameObject visualsObject;
+        
         [SerializeField]
         private bool rotateToMoveDirection = false;
+        
+        [SerializeField]
+        private float movementLeanAmount = 15f;
         #endregion
 
         #region INPUT SYSTEM
-
+        
         public PlayerInput input;
         #endregion
 
         #region PROPERTIES
+
+        private bool _canControl = true;
         
 
         /// <summary>
@@ -47,10 +54,21 @@ using UnityEngine.InputSystem;
             get { return _runSpeed; }
             set { _runSpeed = Mathf.Max(0.0f, value); }
         }
-        
+
+        public bool canControl
+        {
+            get => _canControl;
+            set => _canControl = value;
+        }
+
         #endregion
 
         #region METHODS
+
+        public void Knock(Vector3 direction)
+        {
+            movement.ApplyImpulse(direction);
+        }
 
         /// <summary>
         /// Get target speed based on character state (eg: running, walking, etc).
@@ -88,10 +106,7 @@ using UnityEngine.InputSystem;
 
         protected override void Animate()
         {
-            // If no animator, return
 
-            if (animator == null)
-                return;
 
             // Compute move vector in local space
 
@@ -99,17 +114,14 @@ using UnityEngine.InputSystem;
 
             // Update the animator parameters
 
-            var forwardAmount = animator.applyRootMotion
-                ? Mathf.InverseLerp(0.0f, runSpeed, move.z * speed)
-                : Mathf.InverseLerp(0.0f, runSpeed, movement.forwardSpeed);
+            // var forwardAmount = animator.applyRootMotion
+            //     ? Mathf.InverseLerp(0.0f, runSpeed, move.z * speed)
+            //     : Mathf.InverseLerp(0.0f, runSpeed, movement.forwardSpeed);
+            var forwardAmount = Mathf.InverseLerp(0.0f, runSpeed, movement.forwardSpeed);
 
-            animator.SetFloat("Forward", forwardAmount, 0.1f, Time.deltaTime);
-            animator.SetFloat("Turn", Mathf.Atan2(move.x, move.z), 0.1f, Time.deltaTime);
-
-            animator.SetBool("OnGround", movement.isGrounded);
-
-            if (!movement.isGrounded)
-                animator.SetFloat("Jump", movement.velocity.y, 0.1f, Time.deltaTime);
+            float leanAmount = Mathf.Lerp(0, movementLeanAmount, forwardAmount);
+            visualsObject.transform.localRotation = Quaternion.AngleAxis(leanAmount, Vector3.right);
+            
         }
 
         /// <summary>
@@ -119,17 +131,30 @@ using UnityEngine.InputSystem;
 
         protected override void HandleInput()
         {
-            // Handle your custom input here...
-            Vector2 movement = input.actions["Move"].ReadValue<Vector2>();
-
-            moveDirection = new Vector3
+            if (_canControl)
             {
-                x = movement.x,
-                y = 0.0f,
-                z = movement.y
-            };
+                // Handle your custom input here...
+                Vector2 movement = input.actions["Move"].ReadValue<Vector2>();
 
-            jump = input.actions["Jump"].ReadValue<float>() > 0;
+                moveDirection = new Vector3
+                {
+                    x = movement.x,
+                    y = 0.0f,
+                    z = movement.y
+                };
+
+                jump = input.actions["Jump"].ReadValue<float>() > 0;
+            }
+            else
+            {
+                moveDirection = new Vector3
+                {
+                    x = 0,
+                    y = 0.0f,
+                    z = 0
+                };
+            }
+            
 
             // Transform moveDirection vector to be relative to camera view direction
             moveDirection = moveDirection.relativeTo(playerCamera ? playerCamera : Camera.main.transform);

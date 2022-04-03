@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MuzzleFlashes
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: cb7d92fc4d497d848ae24d7d44519cf9, type: 3}
+    - {fileID: 2800000, guid: 8b361cc08badfb1498f5d3f82ccfa9f8, type: 3}
+    - {fileID: 2800000, guid: f3ab61e839166b14895387f57afbb243, type: 3}
+    - {fileID: 2800000, guid: 030c9b052eda5554cb899fcb4ffce3f6, type: 3}
+    - {fileID: 2800000, guid: 3e77172edbfca564a8d8960ce43173e1, type: 3}
+    - {fileID: 2800000, guid: a331c664b61a23b4fb25c496bc83eb26, type: 3}
+    - {fileID: 2800000, guid: 06c8312acc876de4da97c5e8430b2ede, type: 3}
+    - {fileID: 2800000, guid: b8fc4fa20eae8f14a9ba7e60e2cd9575, type: 3}
+    - {fileID: 2800000, guid: 6a2525250e17d874d8fae3dba8c2f071, type: 3}
+    - {fileID: 2800000, guid: e2a9605ddd17f5a4ead29d98ab278b0f, type: 3}
+    - {fileID: 2800000, guid: 9a2586ccc76f6b042b54b5245d5423cf, type: 3}
+    - {fileID: 2800000, guid: d8f47cdc2496c61449da93271fd7b98e, type: 3}
+    - {fileID: 2800000, guid: 4a76a8571f1bab14fb3dff2c9abce92f, type: 3}
+    - {fileID: 2800000, guid: 3823cceebf2625548af855b78f9cd6af, type: 3}
+    - {fileID: 2800000, guid: 28ff93bae6f6829429650953be6c7e3e, type: 3}
+    - {fileID: 2800000, guid: 485fbafbf4489ce47903c56e7a678124, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 8b361cc08badfb1498f5d3f82ccfa9f8, type: 3}
+  - {fileID: 21300000, guid: b8fc4fa20eae8f14a9ba7e60e2cd9575, type: 3}
+  - {fileID: 21300000, guid: a331c664b61a23b4fb25c496bc83eb26, type: 3}
+  - {fileID: 21300000, guid: 030c9b052eda5554cb899fcb4ffce3f6, type: 3}
+  - {fileID: 21300000, guid: 6a2525250e17d874d8fae3dba8c2f071, type: 3}
+  - {fileID: 21300000, guid: 4a76a8571f1bab14fb3dff2c9abce92f, type: 3}
+  - {fileID: 21300000, guid: f3ab61e839166b14895387f57afbb243, type: 3}
+  - {fileID: 21300000, guid: 06c8312acc876de4da97c5e8430b2ede, type: 3}
+  - {fileID: 21300000, guid: 28ff93bae6f6829429650953be6c7e3e, type: 3}
+  - {fileID: 21300000, guid: 485fbafbf4489ce47903c56e7a678124, type: 3}
+  - {fileID: 21300000, guid: 9a2586ccc76f6b042b54b5245d5423cf, type: 3}
+  - {fileID: 21300000, guid: d8f47cdc2496c61449da93271fd7b98e, type: 3}
+  - {fileID: 21300000, guid: cb7d92fc4d497d848ae24d7d44519cf9, type: 3}
+  - {fileID: 21300000, guid: e2a9605ddd17f5a4ead29d98ab278b0f, type: 3}
+  - {fileID: 21300000, guid: 3e77172edbfca564a8d8960ce43173e1, type: 3}
+  - {fileID: 21300000, guid: 3823cceebf2625548af855b78f9cd6af, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - m_2
+  - m_8
+  - m_6
+  - m_4
+  - m_9
+  - m_13
+  - m_3
+  - m_7
+  - m_15
+  - m_16
+  - m_11
+  - m_12
+  - m_1
+  - m_10
+  - m_5
+  - m_14
+  m_RenderDataMap: {}
+  m_Tag: MuzzleFlashes
+  m_IsVariant: 0

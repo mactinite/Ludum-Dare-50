@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Cinemachine;
 using mactinite.ToolboxCommons;
@@ -6,6 +7,10 @@ using UnityEngine.InputSystem;
 public class CameraFollow : SingletonMonobehavior<CameraFollow>
 {
     public Transform followTarget;
+    public LayerMask targetLockLayers;
+    public float targetLockDistance = 15f;
+    public CinemachineTargetGroup TargetGroup;
+    private Transform _lockOnTarget;
     public float lateralSensitivity = 5;
     public float verticalSensitivity = 5;
 
@@ -25,18 +30,52 @@ public class CameraFollow : SingletonMonobehavior<CameraFollow>
     public PlayerInput input;
     private Vector2 _mousePos = Vector2.zero;
 
+    private bool targetLock = false;
+    private Transform lockedOn = null;
+    Collider[] targetableObjects = new Collider[10];
+
+
     private void Awake()
     {
         if (_cameraTrackingTransform == null)
         {
             _cameraTrackingTransform = new GameObject("Camera Target").transform;
             followCam.Follow = _cameraTrackingTransform;
-            followCam.LookAt = _cameraTrackingTransform;
         }
 
         SetCursorState(true);
         input.actions["Release Mouse"].performed += ReleaseCursor;
         input.actions["Punch"].performed += LockCursor;
+        input.actions["Toggle Lock On"].performed += TargetLock;
+    }
+
+    private void OnDisable()
+    {
+        input.actions["Release Mouse"].performed -= ReleaseCursor;
+        input.actions["Punch"].performed -= LockCursor;
+        input.actions["Toggle Lock On"].performed -= TargetLock;
+    }
+
+    private void TargetLock(InputAction.CallbackContext obj)
+    {
+        // toggle target lock
+        if (targetLock)
+        {
+            targetLock = false;
+            TargetGroup.RemoveMember(lockedOn);
+        }
+        else
+        {
+            // get target lock tagged objects and set target to closest;
+
+            var size = Physics.OverlapSphereNonAlloc(transform.position, targetLockDistance, targetableObjects, targetLockLayers);
+            if (size > 0)
+            {
+                targetLock = true;
+                lockedOn = targetableObjects[0].transform;
+                TargetGroup.AddMember(lockedOn, 1, 5);
+            }
+        }
     }
 
     private void ReleaseCursor(InputAction.CallbackContext obj)
@@ -96,6 +135,9 @@ public class CameraFollow : SingletonMonobehavior<CameraFollow>
 
     public void Rotation()
     {
+        
+        // we get mouse position from player input as either mouse delta or gamepad joystick
+        // "Look" binding is set up for both gamepad and mouse delta
         _mousePos = input.actions["Look"].ReadValue<Vector2>() * Time.deltaTime;
         _look.x = _mousePos.x * lateralSensitivity;
         _look.y = -(_mousePos.y * verticalSensitivity);

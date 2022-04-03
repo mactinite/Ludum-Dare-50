@@ -174,31 +174,7 @@ namespace ECM.Controllers
 
         protected override void HandleInput()
         {
-            // Toggle pause / resume.
-            // By default, will restore character's velocity on resume (eg: restoreVelocityOnResume = true)
-
-            if (Input.GetKeyDown(KeyCode.P))
-                pause = !pause;
-
-            crouch = Input.GetKey(KeyCode.C);
-
-            // Handle mouse input
-
-            if (!Input.GetButton("Fire2"))
-                return;
-
-            // If mouse right click,
-            // found click position in the world
-
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            RaycastHit hitInfo;
-            if (!Physics.Raycast(ray, out hitInfo, Mathf.Infinity, groundMask.value))
-                return;
-
-            // Set agent destination to ground hit point
-
-            agent.SetDestination(hitInfo.point);
+     
         }
 
         #endregion
