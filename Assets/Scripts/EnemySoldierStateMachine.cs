@@ -155,7 +155,7 @@ public class AttackState : State<EnemySoldierStateMachine>
         StateMachine.navMeshAgent.isStopped = true;
         StateMachine.animator.Play("Wind Up");
         yield return new WaitForSeconds(StateMachine.attackWindupDuration);
-        StateMachine.animator.Play("Attack");
+        StateMachine.animator.Play(UnityEngine.Random.value > 0.5f ? "Attack 2":"Attack");
         yield return new WaitForSeconds(StateMachine.attackHitboxDelay);
         StateMachine.attackHitbox.SetActive(true);
         // play idle animation and wait until we see the player

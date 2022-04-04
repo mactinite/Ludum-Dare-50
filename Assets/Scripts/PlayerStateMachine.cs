@@ -3,11 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using mactinite.EDS.Basic;
+using mactinite.ToolboxCommons;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class PlayerStateMachine : StateMachine<PlayerStateMachine>
 {
+
+    public HealthBarController healthBarController;
+    
+    public SoundBox punchWooshSounds;
+    public SoundBox punchUpSounds;
+    public SoundBox punchSlamSounds;
+
+
     
     public float punchDuration = 0.5f;
     public float punchForwardSpeed = 10f;
@@ -33,6 +42,8 @@ public class PlayerStateMachine : StateMachine<PlayerStateMachine>
     [SerializeField] internal Animator animator;
 
     public BasicDamageReceiver damageReceiver;
+
+    public Transform deathPrefab;
 
 
 
@@ -68,12 +79,13 @@ public class PlayerStateMachine : StateMachine<PlayerStateMachine>
     private void OnDeath(Vector2 pos)
     {
         gameObject.SetActive(false);
+        Instantiate(deathPrefab, transform.position, transform.rotation);
         Debug.Log("Game Over");
     }
 
     private void OnDamage(Vector2 pos, BasicDamage damage)
     {
-        
+        healthBarController.SetValue(damage.NewHealth / damageReceiver.maxHealth);   
     }
 }
 
@@ -232,12 +244,14 @@ public class PunchState : State<PlayerStateMachine>
     public override IEnumerator Start()
     {
         float t = 0;
+        bool nextComboBuffered = false;
         StateMachine.CharacterController.canControl = false;
         StateMachine.CharacterController.movement.useGravity = false;
         StateMachine.CharacterController.movement.velocity = Vector3.zero;
         
         Vector3 startPosition = StateMachine.CharacterController.transform.position;
         StateMachine.animator.Play(animation);
+        StateMachine.punchWooshSounds.PlayRandomOneShot();
         while (t <= StateMachine.punchDuration)
         {
             
@@ -249,11 +263,9 @@ public class PunchState : State<PlayerStateMachine>
                 yield break;
             }
             
-            if (t > StateMachine.punchDuration * 0.4f && StateMachine.CharacterController.input.actions["Punch"].triggered)
+            if (t > 0 && StateMachine.CharacterController.input.actions["Punch"].triggered)
             {
-                StateMachine.punchHitbox.SetActive(false);
-                StateMachine.SetState(nextAnimationState);
-                yield break;
+                nextComboBuffered = true;
             }
 
             if (t > StateMachine.punchHitboxActivateTime)
@@ -268,11 +280,24 @@ public class PunchState : State<PlayerStateMachine>
             t += Time.deltaTime;
             yield return null;
         }
+
+
+        if (nextComboBuffered)
+        {
+            StateMachine.SetState(nextAnimationState);
+        }
+        else
+        {
+            StateMachine.SetState("Ground");
+        }
         
         StateMachine.CharacterController.canControl = true;
         StateMachine.CharacterController.movement.useGravity = true;
+        StateMachine.CharacterController.movement.velocity = Vector3.zero;
+        
         StateMachine.punchHitbox.SetActive(false);
-        StateMachine.SetState("Ground");
+
+        
     }
 
 }
@@ -295,6 +320,8 @@ public class KickState : State<PlayerStateMachine>
         StateMachine.CharacterController.canControl = false;
         StateMachine.CharacterController.movement.velocity = Vector3.zero;
         StateMachine.animator.Play("Punch Up");
+        StateMachine.punchUpSounds.PlayRandomOneShot();
+
         while (t < StateMachine.kickDuration || StateMachine.transform.position.y < maxHeight)
         {
             StateMachine.CharacterController.movement.ApplyVerticalImpulse(StateMachine.kickUpwardSpeed);
@@ -331,6 +358,8 @@ public class AirKickState : State<PlayerStateMachine>
         StateMachine.CharacterController.movement.useGravity = false;
         StateMachine.CharacterController.canControl = false;
         StateMachine.animator.Play("Slam");
+        StateMachine.punchUpSounds.PlayRandomOneShot();
+
         while (!StateMachine.CharacterController.isGrounded)
         {
             if (t > StateMachine.kickHitboxActivateTime)
@@ -341,6 +370,7 @@ public class AirKickState : State<PlayerStateMachine>
             t += Time.deltaTime;
             yield return null;
         }
+        StateMachine.punchSlamSounds.PlayRandomOneShot();
 
         yield return new WaitForSeconds(StateMachine.airKickRecoveryTime);
         

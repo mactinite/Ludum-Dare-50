@@ -115,7 +115,16 @@ public class CameraFollow : SingletonMonobehavior<CameraFollow>
     private void SetCursorState(bool newState)
     {
         _lockCursor = newState;
-        Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+        if (newState)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ECM.Components;
@@ -12,10 +13,15 @@ public class DamageTrigger3D : MonoBehaviour
 
     public LayerMask damageMask;
 
+    public SoundBox hitSounds;
+    public PrefabSpawner hitEffectsSpawner;
+
+    public List<Collider> previouslyHit = new List<Collider>();
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.IsInLayerMask(damageMask))
+        if (collision.gameObject.IsInLayerMask(damageMask) || previouslyHit.Contains(collision))
         {
+            
             // if other collider has a DamageReceiver, apply that damage
             if (collision.TryGetComponent<BasicDamageReceiver>(out var DamageReceiver))
             {
@@ -31,19 +37,15 @@ public class DamageTrigger3D : MonoBehaviour
             {
                 rigidbody.AddForce(transform.forward * knockBackForce);
             }
+            
+            previouslyHit.Add(collision);
+            hitSounds?.PlayRandomOneShot();
+            hitEffectsSpawner?.SpawnPrefabAt(collision.ClosestPoint(transform.position));
         }
     }
 
-    private void OnTriggerStay(Collider collision)
+    private void OnDisable()
     {
-        if (collision.gameObject.IsInLayerMask(damageMask))
-        {
-
-            // if other collider has a DamageReceiver, apply that damage
-            if (collision.TryGetComponent<BasicDamageReceiver>(out var DamageReceiver))
-            {
-                DamageReceiver.DamageAt(new BasicDamage(damage), collision.ClosestPoint(transform.position));
-            }
-        }
+        previouslyHit.Clear();
     }
 }

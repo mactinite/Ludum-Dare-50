@@ -1,5 +1,214 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &169217902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 169217903}
+  - component: {fileID: 169217904}
+  m_Layer: 0
+  m_Name: Wooshes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &169217903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169217902}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7576255350938528267}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &169217904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169217902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d437dc3b59ae7b488adc17b1470cefb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 556b6d8f61b87384f9adbbf9163cd4bc, type: 3}
+  - {fileID: 8300000, guid: fb748dfd48fd8e74bbec9ebf315cf083, type: 3}
+  - {fileID: 8300000, guid: 81764cdd0bcd39b48b096a5f88489010, type: 3}
+  pitchRange: {x: 1, y: 0}
+  playOnAwake: 0
+--- !u!1 &629602358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 629602359}
+  - component: {fileID: 629602360}
+  m_Layer: 0
+  m_Name: Punch Up Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &629602359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629602358}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7576255350938528267}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &629602360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629602358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d437dc3b59ae7b488adc17b1470cefb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: fa2ac234a7086474985ed5993304205b, type: 3}
+  - {fileID: 8300000, guid: f4f1e80505d20a944951b8561ef2ebb5, type: 3}
+  pitchRange: {x: 1, y: 0}
+  playOnAwake: 0
+--- !u!1 &1223580321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1223580322}
+  - component: {fileID: 1223580323}
+  m_Layer: 0
+  m_Name: SlamSounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1223580322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223580321}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7576255350938528267}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1223580323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223580321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d437dc3b59ae7b488adc17b1470cefb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 2179feb2116b4634da41efccc85ba453, type: 3}
+  - {fileID: 8300000, guid: 587f26bdd4078254f8c857a8b977a2b2, type: 3}
+  pitchRange: {x: 1, y: 0}
+  playOnAwake: 0
+--- !u!1 &1730124902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1730124903}
+  - component: {fileID: 1730124905}
+  - component: {fileID: 1730124904}
+  m_Layer: 3
+  m_Name: PunchHits
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1730124903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730124902}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7576255351491404242}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1730124905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730124902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d437dc3b59ae7b488adc17b1470cefb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: fcaf3bf8b8b0e964eb9836be423d188b, type: 3}
+  - {fileID: 8300000, guid: 2957dc74d414fff4aad570a7266d3de1, type: 3}
+  - {fileID: 8300000, guid: c1b5416cf8d1c564998ebbdbdfc925ef, type: 3}
+  - {fileID: 8300000, guid: fc259facf1c768243ab22dba632d10c8, type: 3}
+  pitchRange: {x: 1, y: 0}
+  playOnAwake: 0
+--- !u!114 &1730124904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730124902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2ad5d370d120a4e87c02460a89d689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1233171262323943822, guid: 6e670a8d0898e8246a70c171278a696d, type: 3}
 --- !u!1 &7576255350282279124
 GameObject:
   m_ObjectHideFlags: 0
@@ -49,7 +258,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7576255350282279124}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -108,11 +317,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a84a67e067f5348a8b37a27280bbb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 10
   knockBackForce: 15
   damageMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 129
+  hitSounds: {fileID: 1730124905}
+  hitEffectsSpawner: {fileID: 1730124904}
+  previouslyHit: []
 --- !u!1 &7576255350433437806
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +374,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7576255350433437806}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -221,11 +433,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a84a67e067f5348a8b37a27280bbb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 7
   knockBackForce: 10
   damageMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 129
+  hitSounds: {fileID: 1730124905}
+  hitEffectsSpawner: {fileID: 1730124904}
+  previouslyHit: []
 --- !u!1 &7576255350938528266
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +469,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7975590599105430309}
+  - {fileID: 169217903}
+  - {fileID: 629602359}
+  - {fileID: 1223580322}
   m_Father: {fileID: 7576255351491404242}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -306,7 +524,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7576255351222702642}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -365,11 +583,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a84a67e067f5348a8b37a27280bbb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 10
   knockBackForce: 20
   damageMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 129
+  hitSounds: {fileID: 1730124905}
+  hitEffectsSpawner: {fileID: 1730124904}
+  previouslyHit: []
 --- !u!1 &7576255351491403816
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +629,7 @@ Transform:
   - {fileID: 7576255350282279125}
   - {fileID: 7576255351222702643}
   - {fileID: 7576255350938528267}
+  - {fileID: 1730124903}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -453,12 +675,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eae04a4fe514bf4789aec1bdb93100b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxLateralSpeed: 10
+  _maxLateralSpeed: 20
   _maxRiseSpeed: 20
   _maxFallSpeed: 20
   _useGravity: 1
   _gravity: {x: 0, y: -30, z: 0}
-  _slideOnSteepSlope: 0
+  _slideOnSteepSlope: 1
   _slopeLimit: 45
   _slideGravityMultiplier: 2
   _snapToGround: 1
@@ -533,6 +755,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c8ac00e46f86e4fabeabc5e0bd08bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBarController: {fileID: 0}
+  punchWooshSounds: {fileID: 169217904}
+  punchUpSounds: {fileID: 629602360}
+  punchSlamSounds: {fileID: 1223580323}
   punchDuration: 0.5
   punchForwardSpeed: 5
   punchHitboxActivateTime: 0.1
@@ -562,9 +788,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   punchHitbox: {fileID: 7576255350433437806}
-  kickDuration: 0.4
-  kickUpwardSpeed: 7
-  kickDownwardSpeed: 15
+  kickDuration: 0.3
+  kickUpwardSpeed: 10
+  kickDownwardSpeed: 20
   kickHitboxActivateTime: 0.1
   kickHeight: 1
   kickUpHitbox: {fileID: 7576255350282279124}
@@ -573,6 +799,8 @@ MonoBehaviour:
   characterController: {fileID: 7576255351491403817}
   animator: {fileID: 7576255350716933325}
   damageReceiver: {fileID: 7576255351491404244}
+  dashSpeed: 15
+  dashDuration: 0.4
   stunDuration: 0.2
 --- !u!114 &7576255351491404244
 MonoBehaviour:

@@ -39,7 +39,12 @@ ModelImporter:
   - first:
       74: -2246502780319343731
     second: Armature|Dash
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 4ca0329153682af4bb79ad132d86aad1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
