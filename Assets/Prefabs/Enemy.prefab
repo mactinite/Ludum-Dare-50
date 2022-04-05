@@ -288,7 +288,7 @@ MonoBehaviour:
   damageReceiver: {fileID: 6459521199266048929}
   animator: {fileID: 6459521199948627587}
   navMeshAgent: {fileID: 6459521199266048928}
-  visionRange: 10
+  visionRange: 15
   currentTarget: {fileID: 0}
   attackRange: 3
   attackDuration: 0.1

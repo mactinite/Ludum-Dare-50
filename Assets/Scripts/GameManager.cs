@@ -13,9 +13,11 @@ public class GameManager : MonoBehaviour
 
     [Scene] public string gameScene;
     [Scene] public string menuScene;
+    public bool isDead = false;
     public GameObject gameOverScreen;
     public GameObject pauseScreen;
     public BasicDamageReceiver playerDamageReceiver;
+    public ActionCharacterController playerCharacterController;
     public CameraFollow followCam;
     public List<Collectable> AllCollectables;
     public bool paused = false;
@@ -34,13 +36,24 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             ReDrawList();
             pauseScreen.SetActive(true);
+            followCam.UnlockCursor();
+            followCam.enabled = false;
+            playerCharacterController.canControl = false;
         }
         else
         {
             Time.timeScale = 1;
             pauseScreen.SetActive(false);
+            followCam.enabled = true;
+            followCam.LockCursor();
+            playerCharacterController.canControl = true;
 
         }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     private void Start()
@@ -75,11 +88,13 @@ public class GameManager : MonoBehaviour
 
     private void TogglePause(InputAction.CallbackContext obj)
     {
-        Pause();
+        if(!isDead)
+            Pause();
     }
 
     private void PlayerDead(Vector2 pos)
     {
+        isDead = true;
         StartCoroutine(GameOver());
     }
 

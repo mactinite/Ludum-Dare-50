@@ -91,6 +91,11 @@ public class CameraFollow : SingletonMonobehavior<CameraFollow>
 
     private void Update()
     {
+        if (lockedOn == null)
+        {
+            targetLock = false;
+        }
+        
         if (_cameraTrackingTransform == null)
         {
             _cameraTrackingTransform = new GameObject("Camera Target").transform;
@@ -144,37 +149,49 @@ public class CameraFollow : SingletonMonobehavior<CameraFollow>
 
     public void Rotation()
     {
+        if (!targetLock)
+        {
+            // we get mouse position from player input as either mouse delta or gamepad joystick
+            // "Look" binding is set up for both gamepad and mouse delta
+            _mousePos = input.actions["Look"].ReadValue<Vector2>() * Time.deltaTime;
+            _look.x = _mousePos.x * lateralSensitivity;
+            _look.y = -(_mousePos.y * verticalSensitivity);
+
+
+            var rotation = _cameraTrackingTransform.transform.rotation;
+            rotation *= Quaternion.AngleAxis(_look.x * rotationPower, Vector3.up);
+            rotation *= Quaternion.AngleAxis(_look.y * rotationPower, Vector3.right);
+            _cameraTrackingTransform.transform.rotation = rotation;
+        }
+        else if (lockedOn != null)
+        {
+            var dirToTarget = lockedOn.transform.position - followTarget.transform.position;
+            dirToTarget.y = 0;
+            var rotation = Quaternion.LookRotation(dirToTarget.normalized);
+            _cameraTrackingTransform.transform.rotation = rotation;
+            
+        }
         
-        // we get mouse position from player input as either mouse delta or gamepad joystick
-        // "Look" binding is set up for both gamepad and mouse delta
-        _mousePos = input.actions["Look"].ReadValue<Vector2>() * Time.deltaTime;
-        _look.x = _mousePos.x * lateralSensitivity;
-        _look.y = -(_mousePos.y * verticalSensitivity);
-
-
-        var rotation = _cameraTrackingTransform.transform.rotation;
-        rotation *= Quaternion.AngleAxis(_look.x * rotationPower, Vector3.up);
-        rotation *= Quaternion.AngleAxis(_look.y * rotationPower, Vector3.right);
-        _cameraTrackingTransform.transform.rotation = rotation;
-
 
         var angles = _cameraTrackingTransform.localEulerAngles;
-        angles.z = 0;
+            angles.z = 0;
+            
 
-        var angle = _cameraTrackingTransform.localEulerAngles.x;
+            var angle = _cameraTrackingTransform.localEulerAngles.x;
 
-        //Clamp the Up/Down rotation
-        if (angle > 180 && angle < 340)
-        {
-            angles.x = 340;
-        }
-        else if (angle < 180 && angle > 40)
-        {
-            angles.x = 40;
-        }
+            //Clamp the Up/Down rotation
+            if (angle > 180 && angle < 340)
+            {
+                angles.x = 340;
+            }
+            else if (angle < 180 && angle > 40)
+            {
+                angles.x = 40;
+            }
 
 
-        _cameraTrackingTransform.localEulerAngles = angles;
+            _cameraTrackingTransform.localEulerAngles = angles;
+
     }
 
     private void OnDrawGizmos()

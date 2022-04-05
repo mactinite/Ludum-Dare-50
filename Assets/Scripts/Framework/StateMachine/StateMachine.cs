@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public abstract class StateMachine<T> : MonoBehaviour where T : StateMachine<T>
